@@ -1,0 +1,154 @@
+/*card3D.css*/
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+:root {
+  --card-height: 18.75rem;
+  --card-width: calc(var(--card-height) / 1.5);
+  --bgc: #191c29;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bgc);
+}
+
+.card__3d {
+  height: var(--card-height);
+  width: var(--card-width);
+  border-radius: 1rem;
+  /* border: 10px solid #1fe118; */
+}
+
+.card__3d {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0 2.25rem;
+  margin: 0 3.125rem;
+  cursor: pointer;
+
+  perspective: 156.25rem;
+  /*2500px*/
+}
+
+.card__3d__cover-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  /* border: 10px solid #4f6473; */
+}
+
+.card__3d__wrapper {
+  position: absolute;
+  width: 100%;
+  transition: all 0.5s;
+  z-index: -1;
+  /* border: 10px solid yellow; */
+}
+
+.card__3d__wrapper::after,
+.card__3d__wrapper::before {
+  content: '';
+  opacity: 0;
+  left: 0;
+  position: absolute;
+  height: 5rem;
+  width: 100%;
+  transition: all 0.5s;
+  /* border: 10px solid salmon; */
+}
+
+.card__3d__wrapper::before {
+  top: 0;
+  height: 100%;
+  background-image: linear-gradient(
+    to top,
+    transparent 46%,
+    rgba(12, 13, 19, 0.5) 68%,
+    rgb(12, 13, 19) 97%
+  );
+
+  /* border: 10px solid red; */
+}
+
+.card__3d__wrapper::after {
+  bottom: 0;
+  opacity: 1;
+  background-image: linear-gradient(
+    to top,
+    transparent 46%,
+    rgb(12, 13, 19, 0.5) 68%,
+    rgb(12, 13, 19) 97%
+  );
+
+  /* border: orange 10px solid; */
+}
+
+.card__3d__title-image {
+  width: 100%;
+  opacity: 1;
+  position: absolute;
+  z-index: -1;
+  transition: transform 0.5s;
+}
+.card__3d__character-image {
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  transition: all 0.8s;
+
+  min-width: 120px;
+  min-height: 120px;
+}
+
+.card__3d__character-image--woman {
+  min-width: 260px;
+  min-height: 260px;
+}
+
+.card__3d__cover-image--digital {
+  min-width: 90px;
+
+  width: 200px;
+  height: 298px;
+}
+
+.card__3d:hover .card__3d__wrapper {
+  transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+
+  box-shadow: 0 23px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.card__3d:hover .card__3d__wrapper::after,
+.card__3d:hover .card__3d__wrapper::before {
+  opacity: 1;
+}
+
+.card__3d:hover .card__3d__wrapper::after {
+  height: 7.5rem;
+}
+
+.card__3d:hover .card__3d__wrapper::before {
+  opacity: 1;
+}
+
+.card__3d:hover .card__3d__character-image {
+  opacity: 1;
+  transform: translate3d(0, -20px, -100px);
+}
